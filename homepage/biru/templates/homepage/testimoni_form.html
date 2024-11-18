@@ -13,7 +13,7 @@
 
 <div class="container">
     <h2 class="mb-4">Buat Testimoni</h2>
-    <form method="post" action="{% url 'create_testimoni' pesanan.id %}" class="card p-4">
+    <form method="post" class="card p-4">
         {% csrf_token %}
         <div class="mb-3">
             <label for="konten" class="form-label">Konten Testimoni</label>

@@ -1,9 +1,8 @@
-from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 # models.py (dalam aplikasi homepage)
 from django.db import models
-from django.contrib.auth.models import User
+
 
 class KategoriJasa(models.Model):
     nama = models.CharField(max_length=100)

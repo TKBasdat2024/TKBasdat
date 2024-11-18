@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Daftar Diskon</h2>
+<table class="table">
+    <tr>
+        <th>Kode</th>
+        <th>Deskripsi</th>
+        <th>Persentase</th>
+        <th>Tanggal Mulai</th>
+        <th>Tanggal Berakhir</th>
+        <th>Status</th>
+    </tr>
+    {% for diskon in diskon_list %}
+    <tr>
+        <td>{{ diskon.kode }}</td>
+        <td>{{ diskon.deskripsi }}</td>
+        <td>{{ diskon.persentase }}%</td>
+        <td>{{ diskon.tanggal_mulai }}</td>
+        <td>{{ diskon.tanggal_berakhir }}</td>
+        <td>{{ diskon.aktif|yesno:"Aktif,Tidak Aktif" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'tambah_diskon' %}" class="btn btn-success">Tambah Diskon</a>
+{% endblock %}
