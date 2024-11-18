@@ -14,16 +14,17 @@ class Testimoni(models.Model):
         return f"Testimoni oleh {self.user.username} - Rating: {self.rating}"
 
 class Voucher(models.Model):
-    kode = models.CharField(max_length=50, unique=True)
+    kode = models.CharField(max_length=20, unique=True)
     deskripsi = models.TextField()
-    persentase_diskon = models.DecimalField(max_digits=5, decimal_places=2)
+    diskon_persen = models.DecimalField(max_digits=5, decimal_places=2)
     tanggal_mulai = models.DateField()
     tanggal_berakhir = models.DateField()
-    aktif = models.BooleanField(default=True)
+    jumlah_penggunaan = models.IntegerField(default=0)
+    pengguna = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.kode} - {self.persentase_diskon}%"
-
+        return f"{self.kode} - {self.diskon_persen}%"
+    
     def is_valid(self):
         from datetime import date
-        return self.aktif and self.tanggal_mulai <= date.today() <= self.tanggal_berakhir
+        return self.tanggal_mulai <= date.today() <= self.tanggal_berakhir

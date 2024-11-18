@@ -15,4 +15,4 @@ class TestimoniForm(forms.ModelForm):
 class VoucherForm(forms.ModelForm):
     class Meta:
         model = Voucher
-        fields = ['kode', 'deskripsi', 'persentase_diskon', 'tanggal_mulai', 'tanggal_berakhir', 'aktif']
+        fields = ['kode', 'deskripsi', 'diskon_persen', 'tanggal_mulai', 'tanggal_berakhir']

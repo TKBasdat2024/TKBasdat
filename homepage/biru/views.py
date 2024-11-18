@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import TestimoniForm, VoucherForm
@@ -30,9 +30,19 @@ def testimoni_detail(request, testimoni_id):
     return render(request, 'homepage/testimoni_detail.html', {'testimoni': testimoni})
 
 def voucher_list(request):
-    vouchers = Voucher.objects.filter(aktif=True)
+    vouchers = Voucher.objects.all()
     return render(request, 'homepage/voucher_list.html', {'vouchers': vouchers})
 
 def voucher_detail(request, kode):
     voucher = get_object_or_404(Voucher, kode=kode)
     return render(request, 'homepage/voucher_detail.html', {'voucher': voucher})
+
+def gunakan_voucher(request):
+    if request.method == 'POST':
+        kode = request.POST.get('kode')
+        voucher = Voucher.objects.filter(kode=kode).first()
+        if voucher and voucher.is_valid():
+            messages.success(request, f"Voucher {kode} berhasil digunakan!")
+        else:
+            messages.error(request, "Voucher tidak valid atau sudah kedaluwarsa.")
+    return redirect('voucher_list')
