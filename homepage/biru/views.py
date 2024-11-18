@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import TestimoniForm
-from .models import Pekerja, PesananJasa, Testimoni
+from .forms import TestimoniForm, VoucherForm
+from .models import Pekerja, PesananJasa, Testimoni, Voucher
 
 
 @login_required
@@ -28,3 +28,11 @@ def testimoni_list(request):
 def testimoni_detail(request, testimoni_id):
     testimoni = get_object_or_404(Testimoni, id=testimoni_id)
     return render(request, 'homepage/testimoni_detail.html', {'testimoni': testimoni})
+
+def voucher_list(request):
+    vouchers = Voucher.objects.filter(aktif=True)
+    return render(request, 'homepage/voucher_list.html', {'vouchers': vouchers})
+
+def voucher_detail(request, kode):
+    voucher = get_object_or_404(Voucher, kode=kode)
+    return render(request, 'homepage/voucher_detail.html', {'voucher': voucher})

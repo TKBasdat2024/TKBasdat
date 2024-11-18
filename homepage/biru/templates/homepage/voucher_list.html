@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Daftar Voucher & Promo</h2>
+<ul>
+    {% for voucher in vouchers %}
+    <li>
+        <a href="{% url 'voucher_detail' voucher.kode %}">
+            {{ voucher.kode }} - {{ voucher.persentase_diskon }}%
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
