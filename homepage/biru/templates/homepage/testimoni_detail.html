@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<nav class="navbar bg-success navbar-dark mb-4">
+    <div class="container-fluid">
+        <span class="navbar-brand">Sijarta</span>
+        <div class="ms-auto">
+            <a href="/testimoni/" class="btn btn-light">Kembali</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Testimoni oleh {{ testimoni.user.username }}</h2>
+            <p><strong>Rating:</strong> {{ testimoni.rating }} ⭐</p>
+            <p class="card-text">{{ testimoni.konten }}</p>
+            <p><small class="text-muted">{{ testimoni.tanggal_testimoni }}</small></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
