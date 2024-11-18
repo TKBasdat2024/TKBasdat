@@ -26,6 +26,12 @@ def subkategori_detail_pekerja(request):
 def view_pemesanan_jasa(request):
     return render(request, 'homepage/view_pemesanan_jasa.html')
 
+def profile_pekerja(request):
+    subkategori = request.GET.get('subkategori', 'default_subkategori')  # Get subkategori from query params
+    return render(request, 'homepage\profile_pekerja.html', {'subkategori': subkategori})
+
+
+
 # def view_pemesanan_jasa(request):
 #     pemesanan_jasa = request.GET.get('pemesanan_jasa')
 #     return render(request, 'homepage/view_pemesanan_jasa.html', {'pemesanan_jasa': pemesanan_jasa})

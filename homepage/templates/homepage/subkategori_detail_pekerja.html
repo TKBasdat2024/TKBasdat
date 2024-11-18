@@ -164,14 +164,15 @@
         <div class="pekerja kotak">
             <h3>Pekerja</h3>
             <div class="pekerja-list">
+                <!-- Daftar pekerja yang dapat diklik untuk menuju halaman profil -->
                 <div class="pekerja-item">
-                    <p>Pekerja 1</p>
+                    <a href="#" onclick="redirectToPage('pekerja')">Pekerja</a>
                 </div>
                 <div class="pekerja-item">
-                    <p>Pekerja 2</p>
+                    <a href="#" onclick="redirectToPage('pekerja')">Pekerja</a>
                 </div>
                 <div class="pekerja-item">
-                    <p>Pekerja 3</p>
+                    <a href="#" onclick="redirectToPage('pekerja')">Pekerja</a>
                 </div>
             </div>
             <button onclick="showSuccessMessage()">Bergabung</button>
@@ -224,10 +225,23 @@
 
     <!-- JavaScript to show success message -->
     <script>
+        // Menyimpan nama pekerja yang dipilih ke localStorage
+        function redirectToPage(role) {
+            var subkategori = sessionStorage.getItem('subkategori');  // Retrieve subkategori from sessionStorage
+    
+            // Dynamically generate the URL to 'profile_pekerja'
+            var url = "{% url 'profile_pekerja' %}?subkategori=" + encodeURIComponent(subkategori);
+    
+            // Mengarahkan ke halaman profile_pekerja dengan query parameter subkategori
+            window.location.href = url;  // Redirect to the profile_pekerja page with subkategori query
+        }
+    
+        // Fungsi untuk menampilkan pesan sukses
         function showSuccessMessage() {
             document.getElementById("success-message").style.display = "block";
         }
     </script>
+    
 </body>
 </html>
 
