@@ -28,3 +28,22 @@ class Voucher(models.Model):
     def is_valid(self):
         from datetime import date
         return self.tanggal_mulai <= date.today() <= self.tanggal_berakhir
+    
+class Voucher(models.Model):
+    kode = models.CharField(max_length=50, unique=True)
+    deskripsi = models.TextField()
+    diskon_persen = models.IntegerField()
+    tanggal_mulai = models.DateField()
+    tanggal_berakhir = models.DateField()
+
+    def __str__(self):
+        return f"{self.kode} - Diskon {self.diskon_persen}%"
+
+class PembelianVoucher(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    voucher = models.ForeignKey(Voucher, on_delete=models.CASCADE)
+    tanggal_pembelian = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=[('Belum Digunakan', 'Belum Digunakan'), ('Sudah Digunakan', 'Sudah Digunakan')], default='Belum Digunakan')
+
+    def __str__(self):
+        return f"{self.user.username} membeli {self.voucher.kode}"

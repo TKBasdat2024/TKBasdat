@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Testimoni, Voucher
+from .models import PembelianVoucher, Testimoni, Voucher
 
 
 class TestimoniForm(forms.ModelForm):
@@ -16,3 +16,8 @@ class VoucherForm(forms.ModelForm):
     class Meta:
         model = Voucher
         fields = ['kode', 'deskripsi', 'diskon_persen', 'tanggal_mulai', 'tanggal_berakhir']
+    
+class PembelianVoucherForm(forms.ModelForm):
+    class Meta:
+        model = PembelianVoucher
+        fields = ['voucher']

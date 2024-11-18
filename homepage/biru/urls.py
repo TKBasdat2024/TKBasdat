@@ -9,4 +9,6 @@ urlpatterns = [
     path('vouchers/', views.voucher_list, name='voucher_list'),
     path('voucher/<str:kode>/', views.voucher_detail, name='voucher_detail'),
     path('gunakan_voucher/', views.gunakan_voucher, name='gunakan_voucher'),
+    path('beli_voucher/<str:kode>/', views.beli_voucher, name='beli_voucher'),
+    path('pembelian_voucher/', views.pembelian_voucher_list, name='pembelian_voucher_list'),
 ]

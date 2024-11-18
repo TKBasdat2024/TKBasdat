@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required, messages
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 
-from .forms import TestimoniForm, VoucherForm
-from .models import Pekerja, PesananJasa, Testimoni, Voucher
+from .forms import PembelianVoucherForm, TestimoniForm, VoucherForm
+from .models import Pekerja, PembelianVoucher, PesananJasa, Testimoni, Voucher
 
 
 @login_required
@@ -46,3 +47,29 @@ def gunakan_voucher(request):
         else:
             messages.error(request, "Voucher tidak valid atau sudah kedaluwarsa.")
     return redirect('voucher_list')
+
+@login_required
+def beli_voucher(request, kode):
+    voucher = get_object_or_404(Voucher, kode=kode)
+    
+    # Validasi: Cek apakah voucher sudah kadaluarsa
+    if voucher.tanggal_berakhir < timezone.now().date():
+        return render(request, 'homepage/error.html', {'message': 'Voucher sudah kadaluarsa'})
+
+    # Validasi: Cek apakah pengguna sudah membeli voucher ini sebelumnya
+    pembelian_terdaftar = PembelianVoucher.objects.filter(user=request.user, voucher=voucher).exists()
+    if pembelian_terdaftar:
+        return render(request, 'homepage/error.html', {'message': 'Anda sudah membeli voucher ini'})
+
+    if request.method == 'POST':
+        form = PembelianVoucherForm(request.POST)
+        if form.is_valid():
+            pembelian = form.save(commit=False)
+            pembelian.user = request.user
+            pembelian.voucher = voucher
+            pembelian.save()
+            return redirect('pembelian_voucher_list')
+    else:
+        form = PembelianVoucherForm()
+
+    return render(request, 'homepage/beli_voucher.html', {'form': form, 'voucher': voucher})
