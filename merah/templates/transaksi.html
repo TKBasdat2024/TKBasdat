@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi MyPay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 20px;
+        }
+        .form-container {
+            border: 1px solid black;
+            padding: 20px;
+        }
+        .form-header {
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group select {
+            width: 100%;
+        }
+        .form-footer {
+            border: 1px solid black;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function updateFormFooter() {
+            var kategori = document.getElementById("kategori-transaksi").value;
+            var formFooter = document.getElementById("form-footer");
+            formFooter.innerHTML = ""; // Clear previous content
+
+            if (kategori === "Top Up MyPay") {
+                formFooter.innerHTML = `
+                    <div class="form-group">
+                        <label for="nominal">Nominal</label>
+                        <input type="text" class="form-control" id="nominal">
+                    </div>
+                    <button class="btn btn-primary">Top Up</button>
+                `;
+            } else if (kategori === "Membayar transaksi") {
+                formFooter.innerHTML = `
+                    <div class="form-group">
+                        <label for="pesanan-jasa">Pilihan Pesanan Jasa</label>
+                        <select class="form-control" id="pesanan-jasa" onchange="updateHargaJasa()">
+                            <option value="">Pilih Jasa</option>
+                            <option value="home-cleaning">Home Cleaning</option>
+                            <option value="massage">Massage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="harga-jasa">Harga Jasa</label>
+                        <input type="text" class="form-control" id="harga-jasa" readonly>
+                    </div>
+                    <button class="btn btn-primary">Bayar</button>
+                `;
+            } else if (kategori === "Transfer MyPay") {
+                formFooter.innerHTML = `
+                    <div class="form-group">
+                        <label for="nohp">No HP</label>
+                        <input type="text" class="form-control" id="nohp">
+                    </div>
+                    <div class="form-group">
+                        <label for="nominal">Nominal</label>
+                        <input type="text" class="form-control" id="nominal">
+                    </div>
+                    <button class="btn btn-primary">Bayar</button>
+                `;
+            } else if (kategori === "Withdrawal") {
+                formFooter.innerHTML = `
+                    <div class="form-group">
+                        <label for="nama-bank">Nama Bank</label>
+                        <select class="form-control" id="nama-bank">
+                            <option value="bca">BCA</option>
+                            <option value="mandiri">Mandiri</option>
+                            <option value="bni">BNI</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="norek">No Rekening</label>
+                        <input type="text" class="form-control" id="norek">
+                    </div>
+                    <div class="form-group">
+                        <label for="nominal">Nominal</label>
+                        <input type="text" class="form-control" id="nominal">
+                    </div>
+                    <button class="btn btn-primary">Bayar</button>
+                `;
+            } else {
+                formFooter.innerText = "State Form berdasarkan kategori";
+            }
+
+        }
+
+        function updateHargaJasa() {
+            var pesananJasa = document.getElementById("pesanan-jasa").value;
+            var hargaJasa = document.getElementById("harga-jasa");
+
+            if (pesananJasa === "home-cleaning") {
+                hargaJasa.value = "150.000";
+            } else if (pesananJasa === "massage") {
+                hargaJasa.value = "100.000";
+            } else {
+                hargaJasa.value = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container form-container">
+        <div class="form-header">
+            <h4>Form</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label for="tanggal-transaksi">Tanggal Transaksi</label>
+            </div>
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label for="nama-user">Nama User</label>
+                    <input type="text" class="form-control" id="nama-user">
+                </div>
+                <div class="form-group">
+                    <label for="saldo-user">Saldo User</label>
+                    <input type="text" class="form-control" id="saldo-user">
+                </div>
+                <div class="form-group">
+                    <label for="kategori-transaksi">Kategori Transaksi</label>
+                    <select class="form-control" id="kategori-transaksi" onchange="updateFormFooter()">
+                        <option>Pilih Kategori</option>
+                        <option>Top Up MyPay</option>
+                        <option>Membayar transaksi</option>
+                        <option>Transfer MyPay</option>
+                        <option>Withdrawal</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-footer" id="form-footer">
+            State Form berdasarkan kategori
+        </div>
+    </div>
+</body>
+</html>
