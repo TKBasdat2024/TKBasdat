@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('homepage.urls')),  # Include the homepage URLs here
+    # path('subkategori_detail_user/<int:id>/', include('homepage.urls')),  # Assuming app_name is the name of your app where subkategori_detail_user is defined
+    # path('subkategori_detail_pekerja/<int:id>/', include('homepage.urls')),
 ]

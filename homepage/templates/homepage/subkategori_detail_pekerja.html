@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deskripsi Subkategori</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .subkategori-details, .sesi-layanan, .pekerja, .testimoni {
+            margin-bottom: 30px;
+        }
+
+        .subkategori-details h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .subkategori-details p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .kotak {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .kotak ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .kotak li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .pekerja .pekerja-list, .testimoni .testimoni-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pekerja .pekerja-item, .testimoni .testimoni-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .pekerja button, .testimoni button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .pekerja button:hover, .testimoni button:hover {
+            background-color: #2980b9;
+        }
+
+        .testimoni .rating {
+            font-size: 14px;
+            color: #f39c12;
+        }
+
+        /* Style for success message */
+        .success-message {
+            font-size: 18px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-success">
+        <div class="container-fluid">
+            <span class="navbar-brand text-white" href="#">Sijarta</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link text-white" href="#">Pekerja</a>
+                    <a class="nav-link text-white" href="#">Nama</a>
+                    <a class="nav-link text-white" href="#">Homepage</a>
+                    <a class="nav-link text-white" href="#">MyPay</a>
+                    <a class="nav-link text-white" href="#">Kelola Pekerjaan Saya</a>
+                    <a class="nav-link text-white" href="#">Kelola Status Pekerjaan</a>
+                    <a class="nav-link text-white" href="#">Profile</a>
+                </div>
+                <div class="ms-auto">
+                    <a href="/logout/" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Header: Subkategori & Kategori -->
+        <div class="header">
+            <h2>Home Cleaning</h2>
+            <h2>Cleaning Services</h2>
+        </div>
+
+        <!-- Deskripsi Subkategori -->
+        <div class="subkategori-details">
+            <h3>Deskripsi</h3>
+            <p>Jasa pembersihan rumah lengkap, termasuk pembersihan sehari-hari, dapur, kamar mandi, serta layanan deep cleaning dan pembersihan khusus lainnya.</p>
+        </div>
+
+        <!-- Pilihan Sesi Layanan -->
+        <div class="sesi-layanan kotak">
+            <h3>Pilihan Sesi Layanan</h3>
+            <ul>
+                <li>Daily Cleaning | 150,000 IDR</li>
+                <li>Setrika | 100,000 IDR</li>
+                <li>Pembersihan Dapur | 200,000 IDR</li>
+                <li>Pembersihan Kulkas | 250,000 IDR</li>
+                <li>Deep Cleaning | 500,000 IDR</li>
+                <li>Cuci Kasur | 300,000 IDR</li>
+                <li>Pembersihan AC | 250,000 IDR</li>
+                <li>Service AC | 350,000 IDR</li>
+            </ul>
+        </div>
+
+        <!-- Pekerja -->
+        <div class="pekerja kotak">
+            <h3>Pekerja</h3>
+            <div class="pekerja-list">
+                <!-- Daftar pekerja yang dapat diklik untuk menuju halaman profil -->
+                <div class="pekerja-item">
+                    <a href="#" onclick="redirectToPage('pekerja')">Pekerja</a>
+                </div>
+                <div class="pekerja-item">
+                    <a href="#" onclick="redirectToPage('pekerja')">Pekerja</a>
+                </div>
+                <div class="pekerja-item">
+                    <a href="#" onclick="redirectToPage('pekerja')">Pekerja</a>
+                </div>
+            </div>
+            <button onclick="showSuccessMessage()">Bergabung</button>
+            <p id="success-message" class="success-message" style="display: none;">Berhasil Bergabung!</p>
+        </div>
+
+        <!-- Testimoni -->
+        <div class="testimoni kotak">
+            <h3>Testimoni</h3>
+            <div class="testimoni-list">
+                <div class="testimoni-item">
+                    <div class="header">
+                        <span>Anonymous 1</span>
+                        <span>2024-11-01</span>
+                    </div>
+                    <div class="content">
+                        <p>Layanan pembersihan sangat memuaskan, pekerja sangat ramah dan teliti dalam bekerja.</p>
+                        <p><strong>Nama Pekerja:</strong> Pekerja 1</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐⭐</p>
+                    </div>
+                </div>
+                <div class="testimoni-item">
+                    <div class="header">
+                        <span>Anonymous 2</span>
+                        <span>2024-11-03</span>
+                    </div>
+                    <div class="content">
+                        <p>Pekerja datang tepat waktu dan hasil pembersihan sangat memuaskan. Dapur saya terlihat bersih dan rapi.</p>
+                        <p><strong>Nama Pekerja:</strong>Pekerja 2</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐</p>
+                    </div>
+                </div>
+                <div class="testimoni-item">
+                    <div class="header">
+                        <span>Anonymous 3</span>
+                        <span>2024-11-05</span>
+                    </div>
+                    <div class="content">
+                        <p>Pekerja sangat cepat dan efisien. Harga yang ditawarkan juga cukup terjangkau untuk layanan yang diberikan.</p>
+                        <p><strong>Nama Pekerja:</strong> Pekerja 3</p>
+                        <p class="rating">Rating: ⭐⭐⭐⭐⭐</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional but needed for collapse functionality) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript to show success message -->
+    <script>
+        // Menyimpan nama pekerja yang dipilih ke localStorage
+        function redirectToPage(role) {
+            var subkategori = sessionStorage.getItem('subkategori');  // Retrieve subkategori from sessionStorage
+    
+            // Dynamically generate the URL to 'profile_pekerja'
+            var url = "{% url 'profile_pekerja' %}?subkategori=" + encodeURIComponent(subkategori);
+    
+            // Mengarahkan ke halaman profile_pekerja dengan query parameter subkategori
+            window.location.href = url;  // Redirect to the profile_pekerja page with subkategori query
+        }
+    
+        // Fungsi untuk menampilkan pesan sukses
+        function showSuccessMessage() {
+            document.getElementById("success-message").style.display = "block";
+        }
+    </script>
+    
+</body>
+</html>
+
+

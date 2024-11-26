@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pekerja</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for profile page */
+        .profile-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .profile-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-success">
+        <div class="container-fluid">
+            <span class="navbar-brand text-white" href="#">Sijarta</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link text-white" href="#">Pekerja</a>
+                    <a class="nav-link text-white" href="#">Nama</a>
+                    <a class="nav-link text-white" href="#">Homepage</a>
+                    <a class="nav-link text-white" href="#">MyPay</a>
+                    <a class="nav-link text-white" href="#">Kelola Pekerjaan Saya</a>
+                    <a class="nav-link text-white" href="#">Kelola Status Pekerjaan</a>
+                    <a class="nav-link text-white" href="#">Profile</a>
+                </div>
+                <div class="ms-auto">
+                    <a href="/logout/" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <div class="container profile-container">
+        <h2>Profil Pekerja</h2>
+        <div class="profile-logo"></div>
+        <h3 id="worker-name">Pekerja </h3>
+
+        <div class="worker-details">
+            <p>Rating: 8/10</p>
+            <p>Jumlah Pesanan Selesai: 50</p>
+            <p>No. HP: 08123456789</p>
+            <p>Tanggal Lahir: 01/01/1990</p>
+            <p>Alamat: Jakarta, Indonesia</p>
+        </div>
+    </div>
+
+    <script>
+        // Ambil nama pekerja dari localStorage
+        const workerName = localStorage.getItem('selectedWorker');
+        
+        // Jika ada nama pekerja, tampilkan di profil
+        if (workerName) {
+            document.getElementById('worker-name').textContent = workerName;
+            // Jika perlu, tambahkan logika untuk menampilkan informasi pekerja lebih lanjut
+            // Misalnya, berdasarkan workerName, ganti foto atau informasi lainnya
+        } else {
+            document.getElementById('worker-name').textContent = "Pekerja";
+        }
+    </script>
+
+</body>
+</html>
