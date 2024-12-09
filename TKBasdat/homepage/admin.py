@@ -1,8 +1,8 @@
-# Register your models here.
 from django.contrib import admin
 
-from .models import (KategoriJasa, MetodeBayar, Pekerja, PekerjaKategoriJasa,
-                     Pelanggan, PesananJasa, SesiLayanan, Subkategori)
+# Register your models here.
+from django.contrib import admin
+from .models import KategoriJasa, Subkategori, SesiLayanan, Pekerja, PesananJasa, Pelanggan, MetodeBayar, PekerjaKategoriJasa
 
 admin.site.register(KategoriJasa)
 admin.site.register(Subkategori)

@@ -1,0 +1,41 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Judul Halaman -->
+    <h2 class="text-center mb-4">Detail Pembelian Voucher</h2>
+
+    <!-- Informasi Pembelian Voucher -->
+    <div class="card shadow-sm p-4 mb-4">
+        <div class="card-header bg-success text-white">
+            <h4>{{ pembelian.voucher.nama }}</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Kode Voucher:</strong> {{ pembelian.voucher.kode }}</p>
+            <p><strong>Deskripsi:</strong> {{ pembelian.voucher.deskripsi }}</p>
+            <p><strong>Diskon:</strong> {{ pembelian.voucher.diskon_persen }}%</p>
+            <p><strong>Tanggal Berlaku:</strong> {{ pembelian.voucher.tanggal_mulai|date:"d M Y" }} - {{ pembelian.voucher.tanggal_berakhir|date:"d M Y" }}</p>
+            <p><strong>Status:</strong> 
+                {% if pembelian.status == 'Belum Digunakan' %}
+                    <span class="badge bg-warning text-dark">{{ pembelian.status }}</span>
+                {% else %}
+                    <span class="badge bg-success">{{ pembelian.status }}</span>
+                {% endif %}
+            </p>
+            <p><strong>Tanggal Pembelian:</strong> {{ pembelian.tanggal_pembelian|date:"d M Y, H:i" }}</p>
+        </div>
+    </div>
+
+    <!-- Tombol Aksi -->
+    <div class="text-center">
+        {% if pembelian.status == 'Belum Digunakan' %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary mb-3">Gunakan Voucher</button>
+        </form>
+        {% endif %}
+        <a href="{% url 'pembelian_voucher_list' %}" class="btn btn-secondary">Kembali ke Daftar Pembelian</a>
+    </div>
+</div>
+{% endblock %}

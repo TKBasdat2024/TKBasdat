@@ -1,0 +1,12 @@
+{% extends 'homepage/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4">
+        <h3 class="card-title">{{ voucher.kode }}</h3>
+        <p><strong>Deskripsi:</strong> {{ voucher.deskripsi }}</p>
+        <p><strong>Diskon:</strong> {{ voucher.diskon_persen }}%</p>
+        <p><strong>Masa Berlaku:</strong> {{ voucher.tanggal_mulai }} hingga {{ voucher.tanggal_berakhir }}</p>
+        <a href="{% url 'voucher_list' %}" class="btn btn-success mt-3">Kembali ke Daftar Voucher</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<nav class="navbar bg-success navbar-dark mb-4">
+    <div class="container-fluid">
+        <span class="navbar-brand">Sijarta</span>
+        <div class="ms-auto">
+            <a href="/" class="btn btn-light">Home</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mb-4">Buat Testimoni</h2>
+    <form method="post" class="card p-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="konten" class="form-label">Konten Testimoni</label>
+            {{ form.konten }}
+        </div>
+        <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            {{ form.rating }}
+        </div>
+        <button type="submit" class="btn btn-success">Kirim Testimoni</button>
+    </form>
+</div>
+{% endblock %}

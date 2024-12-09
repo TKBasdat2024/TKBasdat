@@ -1,8 +1,8 @@
-# Create your views here.
 from django.shortcuts import render
 
+# Create your views here.
+from django.shortcuts import render
 from .models import KategoriJasa, Subkategori
-
 
 def homepage(request):
     kategori_list = KategoriJasa.objects.all()
@@ -10,6 +10,7 @@ def homepage(request):
 
 from django.shortcuts import render
 
+from django.shortcuts import render
 
 def subkategori_detail_user(request):
     # Get subkategori from GET request or session
@@ -24,12 +25,6 @@ def subkategori_detail_pekerja(request):
 
 def view_pemesanan_jasa(request):
     return render(request, 'homepage/view_pemesanan_jasa.html')
-
-def profile_pekerja(request):
-    subkategori = request.GET.get('subkategori', 'default_subkategori')  # Get subkategori from query params
-    return render(request, 'homepage\profile_pekerja.html', {'subkategori': subkategori})
-
-
 
 # def view_pemesanan_jasa(request):
 #     pemesanan_jasa = request.GET.get('pemesanan_jasa')
